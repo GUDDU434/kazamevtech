@@ -6,6 +6,9 @@ import {
   USER_FAILURE_METHOD,
   USER_REQUEST_METHOD,
   USER_SUCCESS_METHOD,
+  USER_RESISTER_REQUEST_METHOD,
+  USER_RESISTER_SUCCESS_METHOD,
+  USER_RESISTER_FAILURE_METHOD,
 } from "./auth.actionTypes";
 
 export const loginRequest = () => ({
@@ -101,6 +104,28 @@ export const updateUserDetails = (id, data) => {
       }
     } catch (error) {
       dispatch(UserDetailsFailure(error.message));
+    }
+  };
+};
+
+export const RegisterUser = (formdata) => {
+  return async (dispatch) => {
+    dispatch({ type: USER_RESISTER_REQUEST_METHOD });
+    try {
+      const response = await axiosInstance.post(`/auth/registration`, formdata);
+      const data = response.data;
+      if (response?.status === 201) {
+        dispatch({ type: USER_RESISTER_SUCCESS_METHOD, payload: data });
+        return "SUCCESS";
+      } else {
+        dispatch({ type: USER_RESISTER_FAILURE_METHOD, payload: data });
+        return "FAILURE";
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Invalid username or password";
+      dispatch({ type: USER_RESISTER_FAILURE_METHOD, payload: errorMessage });
+      return "FAILURE";
     }
   };
 };
