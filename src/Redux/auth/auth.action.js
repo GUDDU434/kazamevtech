@@ -27,11 +27,11 @@ export const loginUser = (username, password) => {
     dispatch(loginRequest());
     try {
       const response = await axiosInstance.post(`/auth/login`, {
-        email:username,
+        email: username,
         password,
       });
       const data = response.data;
-      if (response.status === 200) {
+      if (response?.status === 200) {
         const { accessToken, refreshToken, name } = data?.data;
         dispatch(loginSuccess({ accessToken, refreshToken, name }));
         localStorage.setItem("accessToken", accessToken);
@@ -72,7 +72,7 @@ export const getUserDetails = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response?.data?.status === 200) {
+      if (response?.status === 200) {
         dispatch(UserDetailsSuccess(response?.data));
       } else {
         dispatch(UserDetailsFailure(response?.data?.message));
@@ -88,13 +88,13 @@ export const updateUserDetails = (id, data) => {
     dispatch(UserDetailsRequest());
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.put(`/auth/users/${id}`, data, {
+      const response = await axiosInstance.put(`/auth/user`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response?.data?.status === 200) {
-        dispatch(UserDetailsSuccess(response?.data?.data));
+      if (response?.status === 200) {
+        dispatch(UserDetailsSuccess(response?.data));
         return "SUCCESS";
       } else {
         dispatch(UserDetailsFailure(response?.data.message));

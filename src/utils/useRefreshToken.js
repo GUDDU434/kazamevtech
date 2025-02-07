@@ -8,8 +8,8 @@ const useRefreshToken = () => {
       refreshToken,
     });
 
-    localStorage.setItem("accessToken", response?.data?.data);
-    return response?.data?.data;
+    localStorage.setItem("accessToken", response?.data?.accessToken);
+    return response?.data?.accessToken;
   };
   return refresh;
 };

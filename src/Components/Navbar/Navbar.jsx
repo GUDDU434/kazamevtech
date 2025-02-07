@@ -6,9 +6,8 @@ import {
   Button,
   IconButton,
   Modal,
-  Select,
   TextField,
-  Toolbar,
+  Toolbar
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +41,8 @@ const Navbar = ({ onOpen }) => {
   useEffect(() => {
     setUserDetails(profile);
   }, [profile, user]);
+
+  console.log(profile, "profile");
 
   const handleCloseUserModal = () => {
     setUserModal(false);
@@ -154,42 +155,6 @@ const Navbar = ({ onOpen }) => {
                 readOnly: !editable,
               }}
               disabled
-            />
-            <TextField
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              label="mobile"
-              value={userDetails?.mobile}
-              InputProps={{
-                readOnly: !editable,
-              }}
-              disabled
-            />
-            <Select
-              disabled={profile?.role !== "admin" || !editable}
-              variant="outlined"
-              fullWidth
-              value={userDetails?.role}
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, role: e.target.value })
-              }
-            >
-              {/* {userRole?.map((role) => (
-                <MenuItem key={role} value={role}>
-                  {role}
-                </MenuItem>
-              ))} */}
-            </Select>
-            <TextField
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              label="Username"
-              value={userDetails?.username}
-              InputProps={{
-                readOnly: !editable,
-              }}
             />
           </Box>
 
