@@ -10,11 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../auth/AuthContext";
-import { useDispatch } from "react-redux";
 import { RegisterUser } from "../../Redux/auth/auth.action";
 
 const Login = () => {
@@ -39,8 +38,9 @@ const Login = () => {
     }
     try {
       await login(username, password);
+      toast.success("Login successful");
     } catch (error) {
-      // console.log(error);
+      toast.error("Email/Password incorrect");
     }
   };
 
@@ -65,6 +65,7 @@ const Login = () => {
     dispatch(RegisterUser(data))
       .then((res) => {
         if (res === "SUCCESS") {
+          toast.success("Registration successful");
           setOpen(false);
         }
       })

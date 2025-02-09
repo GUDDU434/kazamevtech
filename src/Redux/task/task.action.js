@@ -15,7 +15,7 @@ export const GetAllTasks = (query) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         dispatch({ type: TASKS_SUCCESS, payload: response?.data });
       } else {

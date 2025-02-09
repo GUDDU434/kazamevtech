@@ -132,6 +132,7 @@ export function AuthProvider({ children }) {
         navigate("/");
       } catch (error) {
         console.error("Login error: ", error);
+        throw error;
       }
     },
     [navigate]

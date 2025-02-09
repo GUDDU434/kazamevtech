@@ -7,7 +7,7 @@ import {
   IconButton,
   Modal,
   TextField,
-  Toolbar
+  Toolbar,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ const Navbar = ({ onOpen }) => {
     setUserDetails(profile);
   }, [profile, user]);
 
-  console.log(profile, "profile");
+  // console.log(profile, "profile");
 
   const handleCloseUserModal = () => {
     setUserModal(false);
@@ -62,9 +62,9 @@ const Navbar = ({ onOpen }) => {
   };
 
   const handleSaveUserDetails = () => {
-    dispatch(updateUserDetails(profile?._id, userDetails)).then(() =>
-      dispatch(getUserDetails())
-    );
+    dispatch(updateUserDetails(profile?._id, userDetails)).then(() => {
+      dispatch(getUserDetails());
+    });
     setEditable(false);
     toast.success("User Details updated successfully!");
   };
