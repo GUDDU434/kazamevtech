@@ -79,7 +79,7 @@ const Dashboard = () => {
     <>
       <Box width={"65%"} mx={"auto"} mt={8}>
         <Typography variant="h4" mb={4}>
-          Task List
+          Todo List
         </Typography>
         <Box
           component="form"
@@ -101,7 +101,7 @@ const Dashboard = () => {
             required
           />
           <Button type="submit" variant="contained" color="primary">
-            Save
+            +Add
           </Button>
         </Box>
 
@@ -110,7 +110,7 @@ const Dashboard = () => {
             <TableHead>
               <TableRow style={{ backgroundColor: "#1e3a8a" }}>
                 <TableCell sx={{ color: "white", width: "50%" }}>
-                  Task
+                  Todo
                 </TableCell>
                 <TableCell
                   sx={{ color: "white", width: "25%", textAlign: "center" }}

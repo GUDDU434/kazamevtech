@@ -9,7 +9,7 @@ export const GetAllTasks = (query) => {
     dispatch({ type: TASKS_REQUEST });
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.get("/task", {
+      const response = await axiosInstance.get("/fetchAllTasks", {
         params: query,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ export const GetSingleTask = (id) => {
     dispatch({ type: TASKS_REQUEST });
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.get(`/task/${id}`, {
+      const response = await axiosInstance.get(`/fetchTaskById/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -53,7 +53,7 @@ export const AddTask = (data) => {
     dispatch({ type: TASKS_REQUEST });
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.post("/task", data, {
+      const response = await axiosInstance.post("/add", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +75,7 @@ export const UpdateTask = (id, data) => {
     dispatch({ type: TASKS_REQUEST });
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.put(`/task/${id}`, data, {
+      const response = await axiosInstance.put(`/updateTaskById/${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -97,7 +97,7 @@ export const DeleteTask = (id) => {
     dispatch({ type: TASKS_REQUEST });
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.delete(`/task/${id}`, {
+      const response = await axiosInstance.delete(`/deleteTaskById/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
