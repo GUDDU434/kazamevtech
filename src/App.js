@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { AuthProvider } from "./auth/AuthContext";
-import Routing from "./Routes/Routing";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   useEffect(() => {
@@ -27,9 +26,10 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <AuthProvider>
+      {/* <AuthProvider>
         <Routing />
-      </AuthProvider>
+      </AuthProvider> */}
+      <Dashboard/>
     </div>
   );
 }

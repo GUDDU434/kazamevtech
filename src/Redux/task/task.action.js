@@ -7,13 +7,9 @@ export const TASKS_FAILURE = "TASKS_FAILURE";
 export const GetAllTasks = (query) => {
   return async (dispatch) => {
     dispatch({ type: TASKS_REQUEST });
-    const token = localStorage.getItem("accessToken");
     try {
       const response = await axiosInstance.get("/fetchAllTasks", {
         params: query,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
       // console.log(response);
       if (response.status === 200) {
@@ -30,13 +26,8 @@ export const GetAllTasks = (query) => {
 export const GetSingleTask = (id) => {
   return async (dispatch) => {
     dispatch({ type: TASKS_REQUEST });
-    const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.get(`/fetchTaskById/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.get(`/fetchTaskById/${id}`);
       if (response.status === 200) {
         dispatch({ type: TASKS_SUCCESS, payload: response?.data });
       } else {
@@ -51,13 +42,8 @@ export const GetSingleTask = (id) => {
 export const AddTask = (data) => {
   return async (dispatch) => {
     dispatch({ type: TASKS_REQUEST });
-    const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.post("/add", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.post("/add", data);
       if (response.status === 201) {
         dispatch(GetAllTasks());
         // dispatch({ type: TASKS_SUCCESS, payload: response?.data });
@@ -73,13 +59,8 @@ export const AddTask = (data) => {
 export const UpdateTask = (id, data) => {
   return async (dispatch) => {
     dispatch({ type: TASKS_REQUEST });
-    const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.put(`/updateTaskById/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.put(`/updateTaskById/${id}`, data);
       if (response.status === 200) {
         dispatch(GetAllTasks());
         // dispatch({ type: TASKS_SUCCESS, payload: response?.data });
@@ -95,13 +76,8 @@ export const UpdateTask = (id, data) => {
 export const DeleteTask = (id) => {
   return async (dispatch) => {
     dispatch({ type: TASKS_REQUEST });
-    const token = localStorage.getItem("accessToken");
     try {
-      const response = await axiosInstance.delete(`/deleteTaskById/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axiosInstance.delete(`/deleteTaskById/${id}`);
       if (response.status === 200) {
         dispatch(GetAllTasks());
         // dispatch({ type: TASKS_SUCCESS, payload: response?.data });
